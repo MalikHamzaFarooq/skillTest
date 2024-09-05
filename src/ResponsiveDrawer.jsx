@@ -20,7 +20,7 @@ function ResponsiveDrawer(props) {
     const { window, children } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [openMail, setOpenMail] = React.useState(false);
-    const theme = useTheme(); // Use theme to access breakpoints
+    const theme = useTheme(); 
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -43,15 +43,15 @@ function ResponsiveDrawer(props) {
                         <ListItemIcon>
                             <InboxIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Inbox" />
+                        <ListItemText primary="Home" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
-                    <ListItemButton component={Link} to="/">
+                    <ListItemButton component={Link} to="/about-us">
                         <ListItemIcon>
                             <MailIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Drafts" />
+                        <ListItemText primary="About Us" />
                     </ListItemButton>
                 </ListItem>
             </List>
@@ -61,28 +61,28 @@ function ResponsiveDrawer(props) {
                     <ListItemIcon>
                         <InboxIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Mail" />
+                    <ListItemText primary="Services" />
                     {openMail ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
                 <Collapse in={openMail} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }} component={Link} to="/">
+                        <ListItemButton sx={{ pl: 4 }} component={Link} to="/services">
                             <ListItemIcon>
                                 <MailIcon />
                             </ListItemIcon>
-                            <ListItemText primary="All mail" />
+                            <ListItemText primary="Services for business" />
                         </ListItemButton>
-                        <ListItemButton sx={{ pl: 4 }} component={Link} to="/">
+                        <ListItemButton sx={{ pl: 4 }} component={Link} to="/services">
                             <ListItemIcon>
                                 <MailIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Trash" />
+                            <ListItemText primary="Services for individuals" />
                         </ListItemButton>
-                        <ListItemButton sx={{ pl: 4 }} component={Link} to="/">
+                        <ListItemButton sx={{ pl: 4 }} component={Link} to="/services">
                             <ListItemIcon>
                                 <MailIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Spam" />
+                            <ListItemText primary="Specialist Service" />
                         </ListItemButton>
                     </List>
                 </Collapse>
@@ -108,7 +108,7 @@ function ResponsiveDrawer(props) {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { xs: 'block', sm: 'none' } }} // Show only on small screens
+                        sx={{ mr: 2, display: { xs: 'block', sm: 'none' } }} 
                     >
                         <MenuIcon />
                     </IconButton>
@@ -212,7 +212,7 @@ function ResponsiveDrawer(props) {
                     sx={{
                         background: '#535454',
                         color: '#fff',
-                        display: { xs: 'block', sm: 'none' }, // Show only on xs screens
+                        display: { xs: 'block', sm: 'none' }, 
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                 >
@@ -223,7 +223,7 @@ function ResponsiveDrawer(props) {
                     sx={{
                         background: '#535454',
                         color: '#fff',
-                        display: { xs: 'none', sm: 'block' }, // Show only on sm and up screens
+                        display: { xs: 'none', sm: 'block' }, 
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                     open
@@ -236,7 +236,7 @@ function ResponsiveDrawer(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                {children} {/* Render the routed components here */}
+                {children}
             </Box>
         </Box>
     );
@@ -244,7 +244,7 @@ function ResponsiveDrawer(props) {
 
 ResponsiveDrawer.propTypes = {
     window: PropTypes.func,
-    children: PropTypes.node, // Add children prop type
+    children: PropTypes.node, 
 };
 
 export default ResponsiveDrawer;
