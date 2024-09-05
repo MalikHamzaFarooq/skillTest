@@ -1,9 +1,0 @@
-.layout-main {
-  margin-left: 0;
-}
-
-@media (min-width: 600px) {
-  .layout-main {
-      margin-left: 18%;
-  }
-}

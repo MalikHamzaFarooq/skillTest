@@ -10,16 +10,17 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import { Inbox as InboxIcon, Mail as MailIcon, ExpandLess, ExpandMore } from '@mui/icons-material';
-import { AppBar, Box, MenuItem, Select, Toolbar, Typography, IconButton } from "@mui/material";
+import { AppBar, Box, MenuItem, Select, Toolbar, Typography, IconButton, useTheme } from "@mui/material";
 import { Link } from "react-router-dom"; 
 import MenuIcon from '@mui/icons-material/Menu'; 
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
-    const { window } = props;
+    const { window, children } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [openMail, setOpenMail] = React.useState(false);
+    const theme = useTheme(); // Use theme to access breakpoints
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -35,10 +36,7 @@ function ResponsiveDrawer(props) {
 
     const drawer = (
         <div>
-
-            <h2>  Skill Test</h2>
-
-
+            <h2>Skill Test</h2>
             <List>
                 <ListItem disablePadding>
                     <ListItemButton component={Link} to="/">
@@ -102,7 +100,6 @@ function ResponsiveDrawer(props) {
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
                     ml: { sm: `${drawerWidth}px` },
-                 
                 }}
             >
                 <Toolbar>
@@ -111,7 +108,7 @@ function ResponsiveDrawer(props) {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{ mr: 2, display: { xs: 'block', sm: 'none' } }} // Show only on small screens
                     >
                         <MenuIcon />
                     </IconButton>
@@ -148,7 +145,6 @@ function ResponsiveDrawer(props) {
                                 "& .MuiSelect-select:focus": {
                                     backgroundColor: "transparent",
                                 },
-                             
                                 "& .MuiSelect-icon": {
                                     color: 'white',
                                 },
@@ -177,7 +173,6 @@ function ResponsiveDrawer(props) {
                                 "& .MuiSelect-select:focus": {
                                     backgroundColor: "transparent",
                                 },
-                             
                                 "& .MuiSelect-icon": {
                                     color: 'white',
                                 },
@@ -217,7 +212,7 @@ function ResponsiveDrawer(props) {
                     sx={{
                         background: '#535454',
                         color: '#fff',
-                        display: { xs: 'block', sm: 'none' },
+                        display: { xs: 'block', sm: 'none' }, // Show only on xs screens
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                 >
@@ -228,7 +223,7 @@ function ResponsiveDrawer(props) {
                     sx={{
                         background: '#535454',
                         color: '#fff',
-                        display: { xs: 'none', sm: 'block' },
+                        display: { xs: 'none', sm: 'block' }, // Show only on sm and up screens
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                     open
@@ -241,7 +236,7 @@ function ResponsiveDrawer(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                {/* Main Content */}
+                {children} {/* Render the routed components here */}
             </Box>
         </Box>
     );
@@ -249,6 +244,7 @@ function ResponsiveDrawer(props) {
 
 ResponsiveDrawer.propTypes = {
     window: PropTypes.func,
+    children: PropTypes.node, // Add children prop type
 };
 
 export default ResponsiveDrawer;
