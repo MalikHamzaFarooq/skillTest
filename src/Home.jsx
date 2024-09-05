@@ -6,7 +6,8 @@ import {
   Grid,
   Box,
   Button,
-  IconButton
+  IconButton,
+  Modal
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import FlagIcon from '@mui/icons-material/Flag';
@@ -107,40 +108,48 @@ function Home() {
       </Grid>
 
       {selectedRecord && (
-        <Box 
-          sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 400,
-            bgcolor: 'background.paper',
-            boxShadow: 24,
-            p: 4
-          }}
+        <Modal
+          open={Boolean(selectedRecord)}
+          onClose={handleClose}
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
         >
-          <IconButton
-            onClick={handleClose}
-            sx={{ position: 'absolute', top: 8, right: 8 }}
+          <Box 
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 400,
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+              p: 4
+            }}
           >
-            <CloseIcon />
-          </IconButton>
-          <Typography id="modal-title" variant="h6" component="h2">
-            {selectedRecord.title || "No Title"}
-          </Typography>
-          <Typography id="modal-description" sx={{ mt: 2 }}>
-            Author: {selectedRecord.author}
-          </Typography>
-          <Typography id="modal-description" sx={{ mt: 2 }}>
-            Points: {selectedRecord.points}
-          </Typography>
-          <Typography id="modal-description" sx={{ mt: 2 }}>
-            URL: <a href={selectedRecord.url} target="_blank" rel="noopener noreferrer">{selectedRecord.url}</a>
-          </Typography>
-          <Typography id="modal-description" sx={{ mt: 2 }}>
-            Created At: {new Date(selectedRecord.created_at).toLocaleString()}
-          </Typography>
-        </Box>
+            <IconButton
+              onClick={handleClose}
+              sx={{ position: 'absolute', top: 8, right: 8 }}
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography id="modal-title" variant="h6" component="h2">
+              {selectedRecord.title || "No Title"}
+            </Typography>
+            <Typography id="modal-description" sx={{ mt: 2 }}>
+              Author: {selectedRecord.author}
+            </Typography>
+            <Typography id="modal-description" sx={{ mt: 2 }}>
+              Points: {selectedRecord.points}
+            </Typography>
+            <Typography id="modal-description" sx={{ mt: 2 }}>
+              URL: <a href={selectedRecord.url} target="_blank" rel="noopener noreferrer">{selectedRecord.url}</a>
+            </Typography>
+            <Typography id="modal-description" sx={{ mt: 2 }}>
+              Created At: {new Date(selectedRecord.created_at).toLocaleString()}
+            </Typography>
+            {/* Add more fields as needed */}
+          </Box>
+        </Modal>
       )}
     </Box>
   );
